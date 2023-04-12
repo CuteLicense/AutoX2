@@ -40,16 +40,6 @@ jobs:
           mv  build/inrt/signed/*.apk  app/src/main/assets/template.apk
           ls  app/src/main/assets
           ./gradlew app:assembleV6
-      - uses: Tlaster/android-sign@v1.2.2
-        name: Sign app APK
-        with:
-          releaseDirectory: |
-            app/build/outputs/apk/v6/release
-          signingKeyBase64: ${{ secrets.ASIGNING_KEY }}
-          output: build/app/signed
-          alias: ${{ secrets.AALIAS }}
-          keyStorePassword: ${{ secrets.AKEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.AKEY_PASSWORD }}
       - name: create-gh-release
         if: github.repository == 'kkevsekk1/AutoX'
         uses: taiki-e/create-gh-release-action@v1
